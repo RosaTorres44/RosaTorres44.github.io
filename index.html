@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rosita Torres Guerra</title>
+<meta name="description" content="Rosita Torres Guerra · Líder de Data & Analytics, estrategia tecnológica y transformación digital. Lima, Perú.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<meta property="og:title" content="Rosita Torres Guerra · Líder de Data &amp; Analytics">
+<meta property="og:description" content="Estrategia tecnológica y transformación digital. Lima, Perú.">
+<meta property="og:image" content="https://rosatorres44.github.io/foto.jpg">
+<meta property="og:url" content="https://rosatorres44.github.io/">
+<meta property="og:type" content="profile">
+<style>
+/* Layout: perfil ejecutivo con hero de dos columnas, panel de KPIs tipo dashboard y línea de tiempo que se llena al hacer scroll */
+:root{
+  --bg:#F5F6F9; --surface:#FFFFFF; --ink:#14213A; --muted:#566079; --line:#E1E5EE;
+  --accent:#C92A63; --accent-soft:#FBE6EE; --data:#1D6B88; --data-soft:#E1EFF4;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Hanken Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --radius:14px; --wrap:1120px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D1322; --surface:#151D30; --ink:#E8ECF4; --muted:#9BA5BA; --line:#25304A;
+  --accent:#F0679A; --accent-soft:#3A1A2A; --data:#56B6D6; --data-soft:#14303B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1322; --surface:#151D30; --ink:#E8ECF4; --muted:#9BA5BA; --line:#25304A;
+  --accent:#F0679A; --accent-soft:#3A1A2A; --data:#56B6D6; --data-soft:#14303B; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);line-height:1.1;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* Progreso + nav */
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--data),var(--accent));z-index:60}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+.nav.scrolled{border-bottom-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:24px;height:60px}
+.brand{font-family:var(--display);font-weight:800;font-size:18px;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+.brand span{color:var(--accent)}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0;overflow-x:auto;scrollbar-width:none}
+.nav ul::-webkit-scrollbar{display:none}
+.nav a.link{display:block;padding:6px 12px;border-radius:999px;font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s,background .2s}
+.nav a.link:hover{color:var(--ink)}
+.nav a.link.active{color:var(--ink);background:var(--surface);box-shadow:0 0 0 1px var(--line)}
+@media (max-width:820px){.nav ul{display:none}}
+
+/* Botones */
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:transform .2s,border-color .2s,background .2s;cursor:pointer;font-family:inherit}
+.btn:hover{transform:translateY(-2px);border-color:var(--ink)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* Hero */
+.hero{padding-block:clamp(40px,7vw,88px) clamp(48px,7vw,96px)}
+.hero .wrap{display:grid;grid-template-columns:1.6fr .9fr;grid-template-areas:"intro photo" "rest photo";column-gap:clamp(32px,6vw,80px);row-gap:22px}
+.intro,.rest{display:grid;gap:22px;min-width:0}
+.intro{grid-area:intro;align-self:end}
+.rest{grid-area:rest;align-self:start}
+.hero .label{display:flex;align-items:center;gap:10px}
+.dot{width:8px;height:8px;border-radius:50%;background:#2FB36B;box-shadow:0 0 0 4px color-mix(in srgb,#2FB36B 22%,transparent)}
+.hero h1{font-size:clamp(44px,7vw,84px);font-weight:800;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.role{font-family:var(--display);font-size:clamp(19px,2.2vw,24px);font-weight:500;color:var(--muted);max-width:30ch}
+.role b{color:var(--ink);font-weight:700}
+.lede{max-width:58ch;color:var(--muted)}
+.photo{grid-area:photo;align-self:center;position:relative;justify-self:end;width:min(100%,340px)}
+.photo::before{content:"";position:absolute;inset:14px -14px -14px 14px;border-radius:24px;background:repeating-linear-gradient(135deg,var(--accent-soft) 0 10px,transparent 10px 20px);border:1px solid var(--line)}
+.photo img{position:relative;display:block;width:100%;height:auto;aspect-ratio:4/5;object-position:50% 20%;object-fit:cover;border-radius:24px;max-width:100%}
+.chip{position:absolute;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;box-shadow:0 10px 30px -12px rgba(20,33,58,.35);display:grid;gap:2px}
+.chip .label{font-size:10.5px}
+.chip strong{font-family:var(--mono);font-size:16px;font-variant-numeric:tabular-nums}
+.chip.a{left:50%;transform:translateX(-50%);bottom:-14px;white-space:nowrap;padding:6px 14px;border-radius:999px;grid-auto-flow:column;align-items:center;gap:8px}
+.chip.a::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.chip.a strong{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--ink)}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr minmax(104px,34%);grid-template-areas:"intro photo" "rest rest";column-gap:20px}
+  .intro{gap:14px;align-self:center}
+  .photo{width:100%;max-width:200px;margin-right:8px;align-self:center}
+  .photo::before{inset:8px -8px -8px 8px;border-radius:16px}
+  .photo img{border-radius:16px}
+}
+
+/* Secciones */
+section.block{padding-block:clamp(56px,8vw,104px);border-top:1px solid var(--line)}
+.head{display:grid;gap:10px;margin-bottom:clamp(28px,4vw,48px);max-width:720px}
+.head h2{font-size:clamp(30px,4.2vw,46px);font-weight:700;letter-spacing:-.025em}
+.head p{color:var(--muted)}
+
+/* Perfil */
+.perfil{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.perfil .txt{display:grid;gap:18px;min-width:0}
+.quote{font-family:var(--display);font-size:clamp(22px,2.6vw,30px);font-weight:600;line-height:1.25;letter-spacing:-.015em;border-left:3px solid var(--accent);padding-left:20px}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.fact{background:var(--surface);padding:20px;display:grid;gap:4px}
+.fact strong{font-family:var(--display);font-size:34px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.fact span{font-size:14px;color:var(--muted);line-height:1.35}
+.fact.wide{grid-column:span 2}
+@media (max-width:860px){.perfil{grid-template-columns:1fr}}
+@media (max-width:600px){.chip.a{display:none}.hero h1{font-size:clamp(32px,9.5vw,44px)}.role{font-size:17px}}
+
+/* Indicadores */
+.inds{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.ind{grid-column:span 2}
+.ind:nth-child(-n+2){grid-column:span 3}
+.ind{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(22px,3vw,30px);display:grid;gap:12px;align-content:start;transition:transform .25s,box-shadow .25s}
+.ind:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(20,33,58,.45)}
+.ind h3{font-size:clamp(21px,2.4vw,26px);font-weight:700;letter-spacing:-.015em;display:flex;align-items:center;gap:12px}
+.ind h3::before{content:"";width:12px;height:12px;border-radius:4px;background:var(--accent);flex:none}
+.ind p{color:var(--muted);font-size:15.5px}
+.ind .pills span{background:var(--data-soft);border-color:transparent}
+@media (max-width:960px){.inds{grid-template-columns:repeat(2,1fr)}.ind,.ind:nth-child(-n+2){grid-column:auto}.ind:last-child{grid-column:span 2}}
+@media (max-width:700px){.inds{grid-template-columns:1fr}.ind:last-child{grid-column:auto}}
+
+/* Timeline */
+.timeline{position:relative;display:grid;gap:clamp(28px,4vw,40px);padding-left:36px}
+.timeline::before,.timeline::after{content:"";position:absolute;left:7px;top:6px;width:2px;bottom:6px;border-radius:2px}
+.timeline::before{background:var(--line)}
+.timeline::after{background:linear-gradient(var(--accent),var(--data));transform-origin:top;transform:scaleY(var(--t,1))}
+.job{position:relative;display:grid;gap:10px;min-width:0}
+.job::before{content:"";position:absolute;left:-36px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--data);z-index:1}
+.job.now::before{border-color:var(--accent);background:var(--accent-soft)}
+.job .when{font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.02em}
+.job h3{font-size:clamp(20px,2.2vw,24px);font-weight:700;letter-spacing:-.01em}
+.job .area{color:var(--muted);font-weight:500}
+.job .scope{font-style:italic;color:var(--muted)}
+.job ul{margin:0;padding-left:18px;display:grid;gap:6px;max-width:75ch}
+.job li::marker{color:var(--accent)}
+.org{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;margin-bottom:8px}
+.org h3{font-size:clamp(24px,3vw,30px)}
+.tag{display:inline-block;font-family:var(--mono);font-size:11.5px;padding:3px 9px;border-radius:99px;background:var(--accent-soft);color:var(--accent);font-weight:600;letter-spacing:.03em}
+.prev-xp{margin-top:8px;padding:22px;border:1px dashed var(--line);border-radius:var(--radius);display:grid;gap:8px}
+
+/* IA */
+.ia{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.ia article{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:grid;gap:8px;align-content:start}
+.ia article.feature{grid-column:span 2;background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ia article.feature .label{color:color-mix(in srgb,var(--bg) 70%,transparent)}
+.ia article.feature h3{font-size:clamp(22px,2.6vw,30px)}
+.ia article.feature p{color:color-mix(in srgb,var(--bg) 80%,transparent)}
+.ia h3{font-size:19px;font-weight:700}
+.ia article.video{background:linear-gradient(120deg,var(--ink),color-mix(in srgb,var(--ink) 75%,var(--accent)))}
+.ia .ilink{color:var(--accent);font-weight:600;text-underline-offset:3px;white-space:nowrap}
+.ia .vlink{color:var(--bg);font-weight:600;text-underline-offset:3px;white-space:nowrap}
+.ia p{color:var(--muted);font-size:15.5px}
+@media (max-width:700px){.ia{grid-template-columns:1fr}.ia article.feature{grid-column:auto}}
+
+/* Educación + Idiomas */
+.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 24px}
+.edu article{padding:22px 0;border-top:2px solid var(--ink);display:grid;gap:6px;align-content:start}
+.edu h3{font-size:19px;font-weight:700}
+.edu p{color:var(--muted);font-size:15px}
+.edu article.mit{border-top-color:var(--accent);background:var(--accent-soft);padding:22px 20px;border-radius:0 0 var(--radius) var(--radius)}
+.edu .mit h3{color:var(--ink)}
+.edu .mit .label{color:var(--accent);font-weight:600}
+@media (max-width:820px){.edu{grid-template-columns:1fr}}
+
+/* Competencias */
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 40px}
+.skills>div{display:grid;gap:12px;align-content:start}
+.skills h3{font-size:17px;font-weight:700;display:flex;align-items:center;gap:10px}
+.skills h3::before{content:"";width:10px;height:10px;border-radius:3px;background:var(--accent)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills span{font-size:14px;padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--surface);transition:border-color .2s,color .2s}
+.pills span:hover{border-color:var(--data);color:var(--data)}
+@media (max-width:700px){.skills{grid-template-columns:1fr}}
+
+.certs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(40px,5vw,64px)}
+.certs article{display:grid;gap:8px;align-content:start}
+.certs ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:14.5px;color:var(--muted)}
+.certs li{padding-bottom:6px;border-bottom:1px solid var(--line)}
+@media (max-width:960px){.certs{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.certs{grid-template-columns:1fr}}
+
+/* Contacto */
+.contact{background:var(--ink);color:var(--bg);border-radius:28px;padding:clamp(32px,6vw,72px);display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:end}
+.contact h2{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em}
+.contact p{color:color-mix(in srgb,var(--bg) 75%,transparent);margin-top:14px;max-width:44ch}
+.contact .btns{justify-content:flex-end}
+.contact .btn{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 35%,transparent)}
+.contact .btn:hover{border-color:var(--bg)}
+.contact .btn.primary{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.mail{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px;font-family:var(--mono);font-size:14px}
+.mail button{font:inherit;font-size:12px;padding:4px 10px;border-radius:99px;border:1px solid color-mix(in srgb,var(--bg) 35%,transparent);background:transparent;color:inherit;cursor:pointer}
+@media (max-width:820px){.contact{grid-template-columns:1fr}.contact .btns{justify-content:flex-start}}
+footer{padding-block:32px 40px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+
+/* Scroll dinámico: aparición suave, siempre visible en reposo */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+  }
+}
+@keyframes rise{from{opacity:.55;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<nav class="nav" id="nav" aria-label="Secciones">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><span>Rosita</span> Torres</a>
+    <ul>
+      <li><a class="link" href="#perfil">Perfil</a></li>
+      <li><a class="link" href="#impacto">Impacto</a></li>
+      <li><a class="link" href="#experiencia">Experiencia</a></li>
+      <li><a class="link" href="#ia">IA y comunidad</a></li>
+      <li><a class="link" href="#formacion">Formación</a></li>
+      <li><a class="link" href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <div class="intro">
+      <span class="label"><span class="dot" aria-hidden="true"></span>Lima, Perú · +13 años en datos y tecnología</span>
+      <h1><em>Rosita</em> Torres Guerra</h1>
+      <p class="role"><b>Líder de Data &amp; Analytics.</b> Estrategia tecnológica y transformación digital.</p>
+    </div>
+    <figure class="photo" style="margin:0">
+      <img src="foto.jpg" alt="Rosita Torres Guerra sonriendo, con los brazos cruzados" width="480" height="600">
+      <div class="chip a"><strong>Líder de Data &amp; Analytics</strong></div>
+    </figure>
+    <div class="rest">
+      <p class="lede">Ingeniera de Sistemas. Hoy lidero en el BCP el producto de datos que permite gestionar con evidencia la productividad, el Time to Market y la estabilidad de una organización de más de 3,000 ingenieros.</p>
+      <div class="btns">
+        <a class="btn primary" href="https://www.linkedin.com/in/rosatorresg" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn</a>
+        <a class="btn" href="mailto:rosatorres4492@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Correo</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="block" id="perfil">
+  <div class="wrap">
+    <div class="head rv"><span class="label">Perfil ejecutivo</span><h2>Convertir datos en decisiones</h2></div>
+    <div class="perfil">
+      <div class="txt rv">
+        <p>Más de 13 años en datos y tecnología, 8 de ellos en el BCP, donde pasé de operar las plataformas analíticas del banco a definir la estrategia de datos de la CIO.</p>
+        <p>Combino visión de producto, gobierno de datos y liderazgo de equipos del banco y proveedores (más de 15 personas), con resultados medibles en estabilidad, eficiencia, automatización y calidad de servicio. Curso la Maestría en Gerencia de TI y Transformación Digital y me formé en IA agéntica en MIT Professional Education.</p>
+        <p class="quote">Mi motor: convertir datos en decisiones, tecnología en impacto y equipos en agentes de cambio.</p>
+      </div>
+      <div class="facts rv">
+        <div class="fact"><strong>13+</strong><span>años en datos y tecnología, 8 de ellos en el BCP</span></div>
+        <div class="fact"><strong>+15</strong><span>He tenido la oportunidad de liderar equipos de más de 15 personas</span></div>
+        <div class="fact"><strong>3,000+</strong><span>ingenieros impactados por los productos que lidero</span></div>
+        <div class="fact"><strong>4</strong><span>charlas, talleres y clases compartiendo lo aprendido</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="impacto">
+  <div class="wrap">
+    <div class="head rv"><span class="label">Impacto · Cómo gestiono</span><h2>Los indicadores que guían mis decisiones</h2><p>Gestiono con evidencia. Estas son las categorías e indicadores que sigo de cerca en los productos y equipos que lidero, con métricas DORA como referencia.</p></div>
+    <div class="inds">
+      <article class="ind rv">
+        <h3>Velocidad</h3>
+        <p>Qué tan rápido llega el valor al negocio y la información a quien decide.</p>
+        <div class="pills"><span>Time to Market</span><span>Time to Insight</span><span>Lead time de cambios</span><span>Frecuencia de despliegue</span></div>
+      </article>
+      <article class="ind rv">
+        <h3>Estabilidad</h3>
+        <p>Qué tan confiables son las plataformas y los procesos críticos.</p>
+        <div class="pills"><span>Cumplimiento de SLA</span><span>Errores en procesos batch</span><span>Tasa de fallos en cambios</span><span>Tiempo de recuperación</span></div>
+      </article>
+      <article class="ind rv">
+        <h3>Productividad</h3>
+        <p>Cuánto tiempo de los equipos se libera para crear valor.</p>
+        <div class="pills"><span>Productividad de ingeniería</span><span>Nivel de automatización</span><span>Adopción de procesos y prácticas</span></div>
+      </article>
+      <article class="ind rv">
+        <h3>Eficiencia y servicio</h3>
+        <p>Cómo se usan los recursos y cómo vive el usuario el servicio.</p>
+        <div class="pills"><span>Consumo de plataformas</span><span>Gestión de proveedores</span><span>Tiempo de atención de soporte</span><span>Calidad de servicio</span></div>
+      </article>
+      <article class="ind rv">
+        <h3>Procesos y experiencia</h3>
+        <p>Cómo evolucionan los procesos y cómo los vive quien los usa.</p>
+        <div class="pills"><span>Transformación digital</span><span>Mejora de procesos (SDLC)</span><span>Experiencia de usuario</span><span>Adopción del cambio</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="experiencia">
+  <div class="wrap">
+    <div class="head rv"><span class="label">Experiencia profesional</span><h2>Acompáñame a conocer mi recorrido profesional</h2></div>
+    <div class="org rv"><h3>Banco de Crédito del Perú (BCP)</h3><span class="tag">DIC 2017 – ACTUALIDAD</span></div>
+    <div class="timeline" id="timeline">
+      <div class="job now rv">
+        <span class="when">ENE 2026 – ACTUALIDAD</span>
+        <h3>Product Owner de Data &amp; Analytics <span class="area">· CIO Strategy &amp; Evolution Office</span></h3>
+        <p class="scope">Responsable de la estrategia y el producto de datos con el que la CIO mide y gestiona su desempeño de ingeniería.</p>
+        <ul>
+          <li>Elaboré la estrategia de Data &amp; Analytics de la CIO y lidero su visión, roadmap y prioridades, reduciendo el Time to Insight de quincenal/mensual a diario.</li>
+          <li>Implementé el primer producto de datos de TI: de reporting descriptivo a analítica diagnóstica de cuellos de botella en indicadores estratégicos y operativos, con hoja de ruta hacia modelos predictivos y prescriptivos.</li>
+          <li>Lidero la migración de la data de TI hacia Lakehouse.</li>
+        </ul>
+      </div>
+      <div class="job rv">
+        <span class="when">OCT 2023 – FEB 2026</span>
+        <h3>Product Owner <span class="area">· DevSecOps</span></h3>
+        <ul>
+          <li>Lideré la visión estratégica de One Click Deploy como proceso único y modernizado de despliegue para más de 3,000 ingenieros, automatizando el proceso de punta a punta.</li>
+          <li>Mejoré el SDLC a nivel de proceso y experiencia de usuario con la iniciativa “Un solo camino”.</li>
+          <li>Reduje en 80% el tiempo de atención de soporte con mejoras en el flujo y una base de conocimiento consolidada con IA conversacional.</li>
+          <li>Lideré el proceso de Visioning 2028 para construir el plan estratégico de la CIO junto con los distintos equipos.</li>
+        </ul>
+      </div>
+      <div class="job rv">
+        <span class="when">AGO 2021 – OCT 2023</span>
+        <h3>Product Owner <span class="area">· Plataformas analíticas (Data Lake y Data Warehouse)</span></h3>
+        <ul>
+          <li>Lideré el backlog de las plataformas analíticas centrales del banco, alineado con OKRs de negocio y técnicos.</li>
+          <li>Implementé el proceso DataOps logrando 19% de los despliegues en menos de 1 día, gestionando la adopción y el cambio de mindset.</li>
+          <li>Reduje 50% los errores de batch, llevé el SLA del proceso analítico crítico de 35% a 74% y generé eficiencias en el consumo de las plataformas.</li>
+          <li>Resguardé los datos de alta criticidad (DAC) del Data Warehouse integrando herramientas de seguridad.</li>
+        </ul>
+      </div>
+      <div class="job rv">
+        <span class="when">DIC 2018 – AGO 2021</span>
+        <h3>Subgerente de Operaciones Internas <span class="area">· Data</span></h3>
+        <ul>
+          <li>Dirigí el equipo de Rutinas Data y aseguré la estabilidad operativa de Data Lake y Data Warehouse, gestionando proveedores y SLAs.</li>
+          <li>Implementé procesos que redujeron 20% los tiempos de ejecución de cambios y mejoraron la resiliencia operativa.</li>
+        </ul>
+      </div>
+      <div class="job rv">
+        <span class="when">DIC 2017 – DIC 2018</span>
+        <h3>Analista de Operaciones BI</h3>
+      </div>
+    </div>
+    <div class="prev-xp rv">
+      <span class="label">2012 – 2017 · Consultoría de datos</span>
+      <p>Analista Senior BI en Stefanini Perú, Analista DataStage en Experis Perú, Consultor BI en GORA y practicante en tgestiona. Proyectos de integración de datos, ETL y Data Warehouse para banca, incluida la migración de un Data Warehouse de Oracle a Teradata.</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="ia">
+  <div class="wrap">
+    <div class="head rv"><span class="label">IA, charlas y comunidad</span><h2>Compartir lo que aprendo</h2><p>Llevo la IA y los datos de la promesa al resultado, y me gusta compartirlo en conferencias, aulas y comunidades.</p></div>
+    <div class="ia">
+      <article class="feature rv">
+        <span class="label">Speaker · DevOpsDays Lima 2026</span>
+        <h3>“De promesas a resultados confiables: cómo demostrar el valor de la IA”</h3>
+        <p>Outcome vs. output, baseline, atribución y gobierno para escalar.</p>
+      </article>
+      <article class="rv"><span class="label">Speaker y co-productora · DevSecOps Fest 2024 (BCP)</span><h3>“Revolución Data-Driven: de datos a decisiones”</h3><p>Además co-produje el evento, que impulsa la comunidad interna de ingeniería y la adopción de prácticas.</p></article>
+      <article class="rv"><span class="label">Docente · UTEC 2025</span><h3>Programa de Arquitectura de Datos</h3><p>Dicté los módulos de operaciones, DataOps y MLOps. <a class="ilink" href="https://www.instagram.com/p/DYkPNOPAJKG/" target="_blank" rel="noopener">Ver en Instagram ↗</a></p></article>
+      <article class="feature video rv">
+        <span class="label">Clase maestra · UTEC 2026</span>
+        <h3>“IA y Datos No Estructurados: el nuevo reto del Arquitecto”</h3>
+        <p>Clase abierta sobre cómo la IA cambia el trabajo del arquitecto de datos frente a los datos no estructurados. <a class="vlink" href="https://www.youtube.com/watch?v=GleFfns-y2Q" target="_blank" rel="noopener">Ver el video ↗</a></p>
+      </article>
+      <article class="rv"><span class="label">Mentora · Women in Technology Summit 2026</span><h3>IdeaTech</h3><p>Acompañé a un equipo en una solución con IA de impacto social.</p></article>
+      <article class="rv"><span class="label">En el día a día</span><h3>IA generativa aplicada</h3><p>Claude Code, Microsoft 365 Copilot y prompt engineering.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="formacion">
+  <div class="wrap">
+    <div class="head rv"><span class="label">Educación</span><h2>Formación</h2></div>
+    <div class="edu">
+      <article class="rv"><span class="label">UTP · En curso, inicio 2026</span><h3>Maestría en Gerencia de TI y Transformación Digital</h3><p>Digital Management, Transformación Digital, Gestión Empresarial, Innovación y Agilidad.</p></article>
+      <article class="mit rv"><span class="label">MIT Professional Education · 2026</span><h3>Inteligencia Artificial Agéntica para la Transformación Empresarial</h3><p>Formación ejecutiva en cómo la IA agéntica transforma la estrategia y la operación de las empresas.</p></article>
+      <article class="rv"><span class="label">UTP</span><h3>Ingeniería de Sistemas e Informática</h3><p>Idiomas: español nativo, inglés intermedio.</p></article>
+    </div>
+
+    <div class="head rv" style="margin-top:clamp(56px,7vw,88px)"><span class="label">Competencias</span><h2>Lo que aporto</h2></div>
+    <div class="skills">
+      <div class="rv"><h3>Liderazgo y gestión</h3><div class="pills"><span>Estrategia y roadmap</span><span>OKRs y gestión por resultados</span><span>Stakeholders ejecutivos</span><span>Change management</span><span>Proveedores y SLAs</span><span>Desarrollo de equipos</span></div></div>
+      <div class="rv"><h3>Datos y analítica</h3><div class="pills"><span>Estrategia y gobierno de datos</span><span>Data Products</span><span>DataOps</span><span>Data Lake / Lakehouse / DWH</span><span>Capa semántica</span><span>Power BI</span><span>Métricas DORA</span></div></div>
+      <div class="rv"><h3>Inteligencia artificial</h3><div class="pills"><span>Medición del valor de la IA</span><span>IA generativa y agéntica</span><span>Prompt engineering</span><span>Claude Code</span><span>Microsoft 365 Copilot</span></div></div>
+      <div class="rv"><h3>Ingeniería y plataformas</h3><div class="pills"><span>DevSecOps</span><span>CI/CD</span><span>SDLC</span><span>Azure</span><span>Jira</span><span>GitHub</span><span>Jenkins</span><span>Sonar</span></div></div>
+    </div>
+
+    <div class="certs">
+      <article class="rv"><span class="label">IA y productividad</span><ul><li>Claude Code desde cero · Coding Latam, 2026</li><li>Microsoft 365 Copilot y Prompt Engineering · LinkedIn Learning, 2026</li><li>Decision Intelligence · 2026</li></ul></article>
+      <article class="rv"><span class="label">Cloud y datos</span><ul><li>Microsoft Certified: Azure Fundamentals · 2024</li><li>IBM Certified Solution Developer · InfoSphere DataStage</li><li>DataOps Fundamentals</li></ul></article>
+      <article class="rv"><span class="label">Agilidad y producto</span><ul><li>Scrum Product Owner</li><li>Scrum Master Certified · SCRUMstudy</li><li>Design Thinking · CIDE-PUCP, 2023</li><li>DevOps Foundations · SDLC</li></ul></article>
+      <article class="rv"><span class="label">Liderazgo</span><ul><li>Human-Centered Leadership</li><li>Gestión de personas de alto potencial</li><li>Empodera a tu equipo</li><li>Decisiones estratégicas sin sesgos · LinkedIn Learning, 2024–2025</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="contacto">
+  <div class="wrap">
+    <div class="contact rv">
+      <div>
+        <h2>¿Conversamos?</h2>
+        <p>Abierta a conversar sobre estrategia de datos, productos de datos e IA aplicada al negocio.</p>
+        <div class="mail"><span id="email">rosatorres4492@gmail.com</span><button type="button" id="copy">Copiar</button></div>
+      </div>
+      <div class="btns">
+        <a class="btn primary" href="mailto:rosatorres4492@gmail.com">Enviar correo</a>
+        <a class="btn" href="https://www.linkedin.com/in/rosatorresg" target="_blank" rel="noopener">Ver LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Rosita Torres Guerra</span><span>Lima, Perú</span></div></footer>
+
+
+<script>
+(function(){
+  var prog=document.getElementById('progress'),nav=document.getElementById('nav'),tl=document.getElementById('timeline');
+  var links=[].slice.call(document.querySelectorAll('.nav a.link'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function onScroll(){
+    var h=document.documentElement,max=h.scrollHeight-h.clientHeight,y=h.scrollTop||document.body.scrollTop;
+    prog.style.setProperty('--p',max>0?(y/max).toFixed(4):0);
+    nav.classList.toggle('scrolled',y>8);
+    var r=tl.getBoundingClientRect(),vh=window.innerHeight;
+    var t=Math.min(1,Math.max(0,(vh*0.7-r.top)/r.height));
+    tl.style.setProperty('--t',t.toFixed(3));
+    var cur=-1;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top<vh*0.35)cur=i});
+    links.forEach(function(a,i){a.classList.toggle('active',i===cur)});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);onScroll();
+  var btn=document.getElementById('copy');
+  btn.addEventListener('click',function(){
+    var txt=document.getElementById('email').textContent;
+    function done(){btn.textContent='Copiado';setTimeout(function(){btn.textContent='Copiar'},1800)}
+    function fallback(){var s=window.getSelection(),r=document.createRange();r.selectNodeContents(document.getElementById('email'));s.removeAllRanges();s.addRange(r)}
+    try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
+  });
+})();
+</script>
+</body>
+</html>
